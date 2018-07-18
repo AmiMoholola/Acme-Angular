@@ -1,0 +1,23 @@
+<h3 *ngIf="isLoading"><i>Loading Employees ... </i></h3>
+<h3 *ngIf="!isLoading">Select an Employee:</h3>
+
+<nav> 
+ <button *ngFor="let employee of employees | async;let i = index" (click)="selectEmp(employee,i)" class="btn btn-primary">{{employee.name}} {{employee.surname}}</button>   
+ <br><br>
+ <button (click)="getEmployees()" class="btn btn-success">Refresh Employees</button>&nbsp;
+ <mat-form-field class="example-full-width">
+   <input #stateInput (keyup)="0" matInput placeholder="Search Employee" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+   <mat-autocomplete #auto="matAutocomplete"> 
+     <mat-option (onSelectionChange)="stateInput.value !=undefined && selectEmp(employees,i)" *ngFor="let employees
+      of filteredEmployees | async;let i = index" [value]='employees.name+employees.surname'>
+      <span>{{ employees.name }}</span> &nbsp;
+      <span>{{ employees.surname }}</span> &nbsp;
+     </mat-option>
+   </mat-autocomplete>
+ </mat-form-field>
+</nav>
+
+<div *ngIf="selectedEmployee">
+
+ <app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
+</div>

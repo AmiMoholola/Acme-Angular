@@ -1,0 +1,70 @@
+<div *ngIf="employee">
+  <hr>
+  <h2>Employee Details</h2>
+  <h3>Editing: {{employee.name}} {{employee.surname}}</h3>
+<form [formGroup]="EmployeeForm" (ngSubmit)="onSubmit()">
+  
+
+  <!-- Employee Detail Controls -->
+  <div class="form-group">
+      <label class="center-block">Name:
+        <input id="name" class="form-control" formControlName="name">
+      </label>
+      
+  </div>
+
+  <div class="form-group">
+      <label class="center-block">SurName:
+        <input class="form-control" formControlName="surname">
+      </label>
+  </div>
+
+  <div formArrayName="addressList" class="well well-lg">
+    <div *ngFor="let address of addressList.controls; let i=index" [formGroupName]="i" >
+      <!-- The repeated address template -->
+      <h4>Address #{{i + 1}}</h4>
+      <div style="margin-left: 1em;">
+        <div class="form-group">
+          <label class="center-block">Street:
+            <input class="form-control" formControlName="street">
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="center-block">City:
+            <input class="form-control" formControlName="city">
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="center-block">Provience:
+            <select class="form-control" formControlName="provience">
+              <option *ngFor="let provience of proviences" [value]="provience">{{provience}}</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="center-block">Postal Code:
+            <input class="form-control" formControlName="code">
+          </label>
+        </div>
+      </div>
+      <br>
+      <!-- End of the repeated address template -->
+      
+    </div>
+    <button (click)="addAddress()" type="button">Add Another Address</button>
+  </div>
+ 
+  
+  
+<div style="margin-bottom: 1em">
+    <button type="submit"
+            [disabled]="EmployeeForm.pristine" class="btn btn-success">Save Changes</button> &nbsp;
+    <button
+    type="button" (click)="revert()"
+    [disabled]="EmployeeForm.pristine"
+    class="btn btn-danger">Cancel Changes
+    </button>&nbsp;
+    <button (click)="deleteEmp()" type="button" class="btn btn-primary">Delete {{employee.name}} {{employee.surname}}</button>
+  </div>
+</form>
+</div>
