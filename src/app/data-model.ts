@@ -53,6 +53,6 @@ export class DataModel {
 
 
   
-  export const states = ['Gauteng', 'Freestate', 'North West', 'Western Cape','Northen Cape','Eastern Cape','Limpopo','Mpumalanga','Kwazulu Natal'];
+  
 
   export const proviences = ['Gauteng', 'Freestate', 'North West', 'Western Cape','Northen Cape','Eastern Cape','Limpopo','Mpumalanga','Kwazulu Natal'];
