@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
     this.filteredEmployees = this.stateCtrl.valueChanges
       .pipe(
         startWith(''),
-        map(state => state ? this.filterEmployees(state) : employees.slice())
+        map(employee => employee ? this.filterEmployees(employee) : employees.slice())
       );
   }
 
