@@ -97,6 +97,7 @@ export class EmployeeDetailComponent implements OnChanges {
     );
     
     this.rebuildForm();
+    
   }
 
   prepareSaveEmployee(): Employee {
